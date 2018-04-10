@@ -16,6 +16,16 @@ limitations under the License.
 
 package logger
 
+// Level defines a log level
+type Level uint8
+
+const (
+    LevelDebug Level = iota
+    LevelInfo
+    LevelWarn
+    LevelError
+)
+
 // Logger allows outputting logs to various logger sinks
 type Logger interface {
 
@@ -42,16 +52,16 @@ type Logger interface {
     //  "second-key", 2)
     //
 
-    // Error emits an unstructured error log
+    // ErrorWith emits a structured error log
     ErrorWith(format interface{}, vars ...interface{})
 
-    // Warn emits an unstructured warning log
+    // WarnWith emits a structured warning log
     WarnWith(format interface{}, vars ...interface{})
 
-    // Info emits an unstructured informational log
+    // InfoWith emits a structured info loglog
     InfoWith(format interface{}, vars ...interface{})
 
-    // Debug emits an unstructured debug log
+    // DebugWith emits a structured debug log
     DebugWith(format interface{}, vars ...interface{})
 
     // Flush flushes buffered logs, if applicable
